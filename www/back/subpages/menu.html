@@ -1,0 +1,36 @@
+		<div class = 'col-md-4'>
+			<ul class="list-group" id = 'menu'>
+			</ul> 
+		</div>
+		<div class = 'col-md-8'>
+			<fieldset class="scheduler-border">
+				<legend class="scheduler-border">FORMULARIO DE MENU</legend>
+				<div class="input-group">
+				  <span class="input-group-addon" id="basic-addon3">NOMBRE</span>
+				  <input type="text" class="form-control" id="nombre" aria-describedby="basic-addon3">
+				</div><br>
+				
+				<div class="input-group">
+				  <span class="input-group-addon" id="basic-addon3">PRECIO</span>
+				  <input type="text" class="form-control" id="precio" aria-describedby="basic-addon3">
+				</div><br>
+				
+				<div class="input-group">
+				  <span class="input-group-addon" id="basic-addon3">DESCRIPCION</span>
+				  <textarea type="email" class="form-control" id="desc" aria-describedby="basic-addon3" style = 'resize:none;' ></textarea>
+				</div><br>
+				
+				<div class="input-group">
+				  <span class="input-group-addon" id="basic-addon3">ESTADO</span>
+				  <input type="number" onKeyDown="if(this.value.length==1 && event.keyCode!=8) return false;" maxlength = "1" class="form-control" id="est" aria-describedby="basic-addon3">
+				</div><br>
+				
+				
+				<div style = 'text-align:center;margin:0 auto;' id = 'botones'>
+					<button type="button" class="btn btn-primary" onclick = 'grabar_menu();' >GRABAR</button>
+				</div>
+			</fieldset>
+		</div>
+		<script>
+			ver_menu();
+		</script>

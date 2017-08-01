@@ -1,0 +1,77 @@
+		<div class = 'col-md-4'>
+			<ul class="list-group" id = 'clientes'>
+			</ul> 
+		</div>
+		<div class = 'col-md-8'>
+			<fieldset class="scheduler-border">
+				<legend class="scheduler-border">FORMULARIO DE CLIENTES</legend>
+				<!-- <label id = 'txtEmpresa'></label> -->
+				<div class="input-group " id = 'contieneEmpresa'>
+				  <span class="input-group-addon txtEmpresa" id="basic-addon3">EMPRESA </span>
+				  <select class="form-control empresa_combo" id="empresa" aria-describedby="basic-addon3">
+					
+				  </select>
+				</div><br>
+				
+				<div class="input-group">
+				  <span class="input-group-addon" id="basic-addon3">NOMBRE</span>
+				  <input type="text" class="form-control" id="nombre" aria-describedby="basic-addon3">
+				</div><br>
+				
+				<div class="input-group">
+				  <span class="input-group-addon" id="basic-addon3">APELLIDO</span>
+				  <input type="text" class="form-control" id="apellido" aria-describedby="basic-addon3">
+				</div><br>
+				
+				<div class="input-group">
+				  <span class="input-group-addon" id="basic-addon3">EMAIL</span>
+				  <input type="email" class="form-control" id="email" aria-describedby="basic-addon3">
+				</div><br>
+				
+				<div class="input-group">
+				  <span class="input-group-addon" id="basic-addon3">CODIGO</span>
+				  <input type="number" onKeyDown="if(this.value.length==4 && event.keyCode!=8) return false;" maxlength = "4" class="form-control" id="codigo" aria-describedby="basic-addon3">
+				</div><br>
+				
+				<div class="input-group">
+				  <span class="input-group-addon" id="basic-addon3">CEDULA</span>
+				  <input type="number"  onKeyDown="if(this.value.length==10 && event.keyCode!=8) return false;" maxlength = "10" class="form-control" id="cedula" aria-describedby="basic-addon3">
+				</div><br>
+				
+				<div class="input-group">
+				  <span class="input-group-addon" id="basic-addon3">ESTADO</span>
+				  <input type="number" onKeyDown="if(this.value.length==1 && event.keyCode!=8) return false;" maxlength = "1" class="form-control" id="estado" aria-describedby="basic-addon3">
+				</div><br>
+				<div style = 'text-align:center;margin:0 auto;' id = 'botones'>
+					<button type="button" class="btn btn-primary" onclick = 'grabar_cliente();' >GRABAR</button>
+				</div>
+			</fieldset>
+		</div>
+		<script>
+			ver_clientes();
+			ver_empresas_combo();
+			function ver_empresas_combo(){
+				var db = window.openDatabase("Database", "1.0", "TicketMobile", 200000);
+				db.transaction(function(tx){
+					tx.executeSql('SELECT * from empresa',[],function(tx,results){
+						var registro = results.rows.length;
+						//alert(registro);
+						var datos = '';
+						var tr = '';
+						tr += '<option value = "0" >Seleccione...</option>';
+						for(var j = 0; j < registro; j++){
+							var row1 = results.rows.item(j);
+							var nombre = row1.nombre;
+							var id = row1.id;
+							//alert('<<>>'+ nombreL);
+							tr += '<option value = "'+id+'" >'+nombre+'</option>';
+							//alert(tr);
+							
+						}
+						$('.empresa_combo').html(tr);
+						
+					},errorCB,successCB);
+				});
+				
+			}
+		</script>
